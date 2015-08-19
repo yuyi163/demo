@@ -1,0 +1,9 @@
+# 忽略本目录下的指定文件或文件夹
+/target/
+/.settings/
+# 忽略子目录下的指定文件或文件夹
+**/logs/
+**/target/
+**/.settings/
+**.project
+**.classpath
