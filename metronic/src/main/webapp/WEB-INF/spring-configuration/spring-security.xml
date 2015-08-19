@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<http use-expressions="true">
+		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<form-login login-processing-url="/login.shtml" login-page="/login.html"
+			username-parameter="username" password-parameter="password" authentication-success-handler-ref="authenticationSuccessHandler"
+			authentication-failure-url="/login.html?authentication_error=true" />
+		<logout logout-url="/logout.shtml" logout-success-url="/login.html"
+			invalidate-session="true" delete-cookies="JSESSIONID" />
+		<remember-me remember-me-parameter="remember" />
+		<!-- Uncomment to enable X509 client authentication support <x509 /> -->
+		<!-- Uncomment to limit the number of sessions a user can have  -->
+		<session-management>
+			<concurrency-control max-sessions="1" expired-url="/login.html?session_authentication_error=true" />
+		</session-management> 
+	</http>
+	
+	<beans:bean id="authenticationSuccessHandler" class="com.yy.metronic.commons.spring.springsecurity.UrlAuthenticationSuccessHandler">  
+		<beans:property name="alwaysUseDefaultTargetUrl" value="true"/>  
+		<beans:property name="defaultTargetUrl" value="/index.html"/>  
+	</beans:bean>  
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="userService" />
+	</authentication-manager>
+	
+</beans:beans>

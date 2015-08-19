@@ -1,6 +1,10 @@
 var Login = function() {
 
     var handleLogin = function() {
+    	
+    	if(Pentahohub.UrlParams.get("authentication_error")){
+			Pentahohub.Notification.error("用户名或密码错误");
+		}
 
         $('.login-form').validate({
             errorElement: 'span', //default input error message container
