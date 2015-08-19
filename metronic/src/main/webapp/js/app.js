@@ -8,7 +8,9 @@ var MetronicApp = angular.module("MetronicApp", [
     "ui.bootstrap", 
     "oc.lazyLoad",  
     "ngResource", 
-    "ngSanitize"
+    "ngSanitize",
+    "ngCookies"
+
 ]); 
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
@@ -502,6 +504,16 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
 }]);
 
 /* Init global settings and run the app */
-MetronicApp.run(["$rootScope", "settings", "$state", function($rootScope, settings, $state) {
+MetronicApp.run(["$log", "$rootScope", "settings", "$state", "UserService", "$http", "$cookies",function($log, $rootScope, settings, $state,UserService, $http, $cookies) {
     $rootScope.$state = $state; // state to be accessed from view
+    
+    UserService.get({id : $cookies.USER_ID }, function(data){
+    	$rootScope.principal = data;
+    	$log.debug("登录用户：", data);
+    }, function(){
+    	
+    });
+    $http.defaults.headers.common = {
+    	"If-Modified-Since" : "0"
+    };
 }]);
