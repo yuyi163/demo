@@ -5,6 +5,7 @@ import com.yy.metronic.entity.User;
 
 
 //与数据库交互
+//持久层
 public interface UserRepository extends JpaRepository<User,String>{
 	
 	User findByMobilePhone(String mobilePhone);

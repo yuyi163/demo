@@ -57,15 +57,16 @@
 		<div class="profile-sidebar">
 			<!-- PORTLET MAIN -->
 			<div class="portlet light profile-sidebar-portlet">
+				<label> views/profile/main.html</label>
 				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic">
-					<img src="../../../assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+					<img src="metronic/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
 				</div>
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name">
-						Marcus Doe
+						{{principal.username}}
 					</div>
 					<div class="profile-usertitle-job">
 						Developer
@@ -106,6 +107,7 @@
 				<!-- END MENU -->
 			</div>
 			<!-- END PORTLET MAIN -->
+			
 			<!-- PORTLET MAIN -->
 			<div class="portlet light">
 				<!-- STAT -->

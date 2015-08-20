@@ -1,4 +1,4 @@
-var signupApp = angular.module("signupApp", [
+var userApp = angular.module("userApp", [
     "ui.router", 
     "ui.bootstrap", 
     "oc.lazyLoad",  
