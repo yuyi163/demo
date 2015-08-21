@@ -1,3 +1,5 @@
+'use strict';
+
 MetronicApp.controller('UserAddController', ['$scope', 'UserService', function($scope, UserService) {
     $scope.$on('$viewContentLoaded', function() {
     	});

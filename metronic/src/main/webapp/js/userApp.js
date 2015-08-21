@@ -1,13 +1,22 @@
-var userApp = angular.module("userApp", [
+var UserApp = angular.module("UserApp", [
     "ui.router", 
     "ui.bootstrap", 
     "oc.lazyLoad",  
     "ngResource", 
-    "ngSanitize"
+    "ngSanitize",
+    "ngCookies"
+
 ]); 
 
-userApp.service('UserService', [ '$resource', function($resource) {
-	return $resource(Global.ROOT_PATH + '/rest/users/:id', null, {
+/* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
+UserApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
+    $ocLazyLoadProvider.config({
+        // global configs go here
+    });
+}]);
+
+UserApp.service('UserService', [ '$resource', function($resource) {
+	return $resource(Global.ROOT_PATH + '/rest/user/:id', null, {
 		'save' : {
 			method : 'POST',
 			url : Global.ROOT_PATH + '/rest/user'
@@ -17,32 +26,73 @@ userApp.service('UserService', [ '$resource', function($resource) {
 		},
 		'updatePersonal' : {
 			method : 'PUT',
-			url : Global.ROOT_PATH + '/rest/users/:username/personal'
+			url : Global.ROOT_PATH + '/rest/user/:username/personal'
 		},
 		'changePassword' : {
 			method : 'PUT',
-			url : Global.ROOT_PATH + '/rest/users/:username/password'
+			url : Global.ROOT_PATH + '/rest/user/:username/password'
 		},
 		'enable' : {
 			method : 'PUT',
-			url : Global.ROOT_PATH + '/rest/users/enable'
+			url : Global.ROOT_PATH + '/rest/user/enable'
 		},
 		'disable' : {
 			method : 'PUT',
-			url : Global.ROOT_PATH + '/rest/users/disable'
+			url : Global.ROOT_PATH + '/rest/user/disable'
 		},
 		'DELETE' : {
 			method : 'DELETE'
 		},
 		'findAll' : {
 			method : 'GET',
-			url : Global.ROOT_PATH + '/rest/users',
+			url : Global.ROOT_PATH + '/rest/user',
 			isArray : true
 		}
 	});
 } ]);
 
-userApp.controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
+
+UserApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    // Redirect any unmatched url
+    $urlRouterProvider.otherwise("/signIn.html");  
+    
+    $stateProvider
+
+
+    .state('signIn', {
+        url: "/signIn.html",
+        templateUrl: "views/user/signIn.html"
+    })
+    
+     .state('forgetPwd', {
+        url: "/forgetPwd.html",
+        templateUrl: "views/user/forgetPwd.html"
+    })
+    
+
+    .state('signUp', {
+        url: "/signUp.html",
+        templateUrl: "views/user/signUp.html",            
+        data: {pageTitle: 'xxxx'},
+        controller: "SignUpController",
+        resolve: {
+            deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'UserApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                        
+                    ] 
+                });
+            }]
+        }
+    })
+
+
+}]);
+
+
+UserApp.controller('SignUpController', ['$scope', 'UserService', function($scope, UserService) {
     $scope.$on('$viewContentLoaded', function() {
     	});
     	
@@ -60,38 +110,3 @@ userApp.controller('UserController', ['$scope', 'UserService', function($scope, 
 		});
 	}
 }]);
-
-userApp.controller('UserUpdateController', ['$scope', '$stateParams','UserService', function($scope, $stateParams,UserService) {
-    $scope.$on('$viewContentLoaded', function() {
-    	
-    	UsersService.get({
-        	id : $stateParams.id
-        }, function(data){
-        	$scope.user = data;
-        });
-
-		$scope.submit = function() {
-			//
-			//if (!$scope.form.$valid) {
-			//	return;
-			//}
-			
-			// submit
-			Metronic.blockUI();
-			UsersService.update({
-				id : $stateParams.id
-			}, $scope.user
-			, function(){
-				Metronic.unblockUI();
-				Notification.success('用户已更新');
-			}, function(error){
-				Metronic.unblockUI();
-				Notification.error(error.data);
-			});
-		}
-    	
-    	});
-    	
-   
-}]);
-
