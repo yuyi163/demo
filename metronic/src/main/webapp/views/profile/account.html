@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" >
 	<div class="col-md-12">
 		<div class="portlet light">
 			<div class="portlet-title tabbable-line">
@@ -21,38 +21,23 @@
 					</li>
 				</ul>
 			</div>
-			<div class="portlet-body">
+			<div class="portlet-body" >
 				<div class="tab-content">
 					<!-- PERSONAL INFO TAB -->
 					<div class="tab-pane active" id="tab_1_1">
 						<form role="form" action="#">
 							<div class="form-group">
-								<label class="control-label">First Name</label>
-								<input type="text" placeholder="John" class="form-control"/>
+								<label class="control-label">userName</label>
+								<input type="text" placeholder={{principal.username}} class="form-control" name="mobilephone" data-ng-model="user.userName" readonly="readonly"/>
 							</div>
 							<div class="form-group">
-								<label class="control-label">Last Name</label>
-								<input type="text" placeholder="Doe" class="form-control"/>
+								<label class="control-label">Mobile Phone</label>
+								<input class="form-control placeholder-no-fix" type="text" placeholder={{principal.mobilePhone}} name="mobilephone" data-ng-model="user.mobilePhone"/>
 							</div>
 							<div class="form-group">
-								<label class="control-label">Mobile Number</label>
-								<input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control"/>
-							</div>
-							<div class="form-group">
-								<label class="control-label">Interests</label>
-								<input type="text" placeholder="Design, Web etc." class="form-control"/>
-							</div>
-							<div class="form-group">
-								<label class="control-label">Occupation</label>
-								<input type="text" placeholder="Web Developer" class="form-control"/>
-							</div>
-							<div class="form-group">
-								<label class="control-label">About</label>
-								<textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
-							</div>
-							<div class="form-group">
-								<label class="control-label">Website Url</label>
-								<input type="text" placeholder="http://www.mywebsite.com" class="form-control"/>
+								<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+								<label class="control-label">Email</label>
+								<input class="form-control placeholder-no-fix" type="text" placeholder={{principal.email}} name="email" data-ng-model="user.email"/>
 							</div>
 							<div class="margiv-top-10">
 								<a href="#" class="btn green-haze">

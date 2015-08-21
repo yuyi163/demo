@@ -6,7 +6,7 @@ var userApp = angular.module("userApp", [
     "ngSanitize"
 ]); 
 
-signupApp.service('UserService', [ '$resource', function($resource) {
+userApp.service('UserService', [ '$resource', function($resource) {
 	return $resource(Global.ROOT_PATH + '/rest/users/:id', null, {
 		'save' : {
 			method : 'POST',
@@ -42,7 +42,7 @@ signupApp.service('UserService', [ '$resource', function($resource) {
 	});
 } ]);
 
-signupApp.controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
+userApp.controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
     $scope.$on('$viewContentLoaded', function() {
     	});
     	
@@ -59,5 +59,39 @@ signupApp.controller('UserController', ['$scope', 'UserService', function($scope
 			Notification.error(error.data);
 		});
 	}
+}]);
+
+userApp.controller('UserUpdateController', ['$scope', '$stateParams','UserService', function($scope, $stateParams,UserService) {
+    $scope.$on('$viewContentLoaded', function() {
+    	
+    	UsersService.get({
+        	id : $stateParams.id
+        }, function(data){
+        	$scope.user = data;
+        });
+
+		$scope.submit = function() {
+			//
+			//if (!$scope.form.$valid) {
+			//	return;
+			//}
+			
+			// submit
+			Metronic.blockUI();
+			UsersService.update({
+				id : $stateParams.id
+			}, $scope.user
+			, function(){
+				Metronic.unblockUI();
+				Notification.success('用户已更新');
+			}, function(error){
+				Metronic.unblockUI();
+				Notification.error(error.data);
+			});
+		}
+    	
+    	});
+    	
+   
 }]);
 
