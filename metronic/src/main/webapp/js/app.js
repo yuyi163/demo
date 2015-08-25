@@ -463,6 +463,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
         .state("profile.account", {
             url: "/account",
             templateUrl: "views/profile/account.html",
+            controller: "UserController",
             data: {pageTitle: 'User Account'}
         })
 
@@ -516,4 +517,9 @@ MetronicApp.run(["$log", "$rootScope", "settings", "$state", "UserService", "$ht
     $http.defaults.headers.common = {
     	"If-Modified-Since" : "0"
     };
+    
+    $rootScope.upload = {
+    		token: Global.USER_ID,
+    		url: Global.ROOT_PATH + '/rest/files'
+    	};
 }]);

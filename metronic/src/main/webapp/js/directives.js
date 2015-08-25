@@ -63,3 +63,28 @@ MetronicApp.directive('dropdownMenuHover', function () {
     }
   };  
 });
+
+
+MetronicApp.directive('ngFileSelect', ['$rootScope', '$http', function ($rootScope, $http) {
+    return function (scope, ele, attr) {
+        ele.bind('change', function (e) {
+            //上传
+            var fn = attr.ngFileSelect;//回调方法，本例为$scope中的upload()方法
+            var file = e.target.files[0];
+            if (file == undefined) {//没选择文件
+                return false;
+            }
+            var form = new FormData();
+            form.append("file", file);
+            $rootScope.loading = true;
+            $http.post($rootScope.upload.url, form, {
+                headers: {
+                    'Content-Type': undefined//如果不设置Content-Type,默认为application/json,七牛会报错
+                }
+            }).success(function (data) {
+                $rootScope.loading = false;
+                scope[fn](data);//上传回调，将data传到upload方法中
+            });
+        });
+    };
+}]);

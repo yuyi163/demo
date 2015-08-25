@@ -27,6 +27,7 @@ public class UserRestController {
 	@Autowired
 	private UserRepository userRepository;
 	
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> POST(@RequestBody User user){
 		userService.saveUser(user);
@@ -49,10 +50,20 @@ public class UserRestController {
 			old.setPassword(user.getPassword());
 		}
 		old.setMobilePhone(user.getMobilePhone());
+		old.setEmail(user.getEmail());
 		userRepository.save(old);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/{id}/image", method = RequestMethod.PUT)
+	public ResponseEntity<Void> updateImage(@PathVariable String id, @RequestBody User user) {
+		User old = userRepository.findOne(id);
+		Assert.isNotNull("该账号不存在", old);
+		
+		old.setImage(user.getImage());
+		userRepository.save(old);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
 	@RequestMapping(value = "/{username}/personal", method = RequestMethod.PUT)
 	public ResponseEntity<Void> updatePersonal(@PathVariable String username, @RequestBody User user) {
 		User old = userRepository.findByUsername(username);

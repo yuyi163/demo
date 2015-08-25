@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -51,6 +52,9 @@ public class User extends BaseEntity implements UserDetails{
 	
 	@Column(name = "STATUS", length = 50)
 	private Status status;
+	
+	@Column(name = "image", length = 100)
+	private String image;
 
 	public String getUsername() {
 		return username;
@@ -88,8 +92,6 @@ public class User extends BaseEntity implements UserDetails{
 		return new ArrayList<GrantedAuthority>();
 	}
 	
-	
-	
 	public Status getStatus() {
 		return status;
 	}
@@ -114,6 +116,14 @@ public class User extends BaseEntity implements UserDetails{
 	public boolean isEnabled() {
 		return Status.ENABLED != status;
 	}
-	
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	
 }
