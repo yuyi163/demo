@@ -464,7 +464,18 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             url: "/account",
             templateUrl: "views/profile/account.html",
             controller: "UserController",
-            data: {pageTitle: 'User Account'}
+            data: {pageTitle: 'User Account'},
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MetronicApp',  
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                        files: [
+                            
+                        ]                    
+                    });
+                }]
+            }
         })
 
         // User Profile Help
@@ -486,7 +497,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                         name: 'MetronicApp',  
                         insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
                         files: [
-                            'metronic/assets/global/plugins/bootstrap-datepicker/css/datepicker3.css',
+                            'metronic/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css',
                             'metronic/assets/global/plugins/select2/select2.css',
                             'metronic/assets/admin/pages/css/todo.css',
                             
@@ -510,7 +521,7 @@ MetronicApp.run(["$log", "$rootScope", "settings", "$state", "UserService", "$ht
     
     UserService.get({id : $cookies.USER_ID }, function(data){
     	$rootScope.principal = data;
-    	$log.debug("登录用户：", data);
+    	$log.debug("app.js run --- 登录用户：", data);
     }, function(){
     	
     });

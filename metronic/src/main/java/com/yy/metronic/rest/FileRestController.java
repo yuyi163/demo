@@ -10,7 +10,6 @@ import java.util.Date;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.math.RandomUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

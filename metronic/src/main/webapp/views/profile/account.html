@@ -21,7 +21,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="portlet-body" data-ng-controller="UserController">
+			<div class="portlet-body" >
 				<div class="tab-content">
 					<!-- PERSONAL INFO TAB -->
 					<div class="tab-pane active" id="tab_1_1" >
@@ -51,10 +51,15 @@
 					
 					<!-- CHANGE AVATAR TAB -->
 					<div class="tab-pane" id="tab_1_2">
-						<form action="#" role="form" method="POST">
+						<form role="form" action="#" method="POST">
 							<div class="form-group">
 							<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+								<!--  
 								<img ng-src="{{image.posterURI}}">
+								-->
+								
+								<img ng-src="{{principal.image}}">
+								
 							</div>
 								<div ng-file-select="uploadPoster">
 									<input type="file" name="file" accept="image/*" >
@@ -65,7 +70,7 @@
 								</div>
 							</div>
 							<div class="margin-top-10">
-								<button type="button" class="btn green-haze" data-ng-click="changeImage();">Submit</button>
+								<button type="button" class="btn green-haze" data-ng-click="updateImage();">Submit</button>
 							
 								<a href="#" class="btn default">
 								Cancel </a>
@@ -75,22 +80,22 @@
 					<!-- END CHANGE AVATAR TAB -->
 					<!-- CHANGE PASSWORD TAB -->
 					<div class="tab-pane" id="tab_1_3">
-						<form action="#">
+						<form role="form" action="#" method="POST" name="change_password_form">
 							<div class="form-group">
 								<label class="control-label">Current Password</label>
-								<input type="password" class="form-control"/>
+								<input type="password" class="form-control" data-ng-model="passwordChange.oldPassword" autocomplete="off" required="required" />
 							</div>
 							<div class="form-group">
 								<label class="control-label">New Password</label>
-								<input type="password" class="form-control"/>
+								<input type="password" class="form-control" data-ng-model="passwordChange.newPassword1"/>
 							</div>
 							<div class="form-group">
 								<label class="control-label">Re-type New Password</label>
-								<input type="password" class="form-control"/>
+								<input type="password" class="form-control" data-ng-model="passwordChange.newPassword2"/>
 							</div>
+							<p class="help-block">{{passwordChange.newPassword1 != passwordChange.newPassword2 ? '两次输入密码不一致' : ''}}</p>
 							<div class="margin-top-10">
-								<a href="#" class="btn green-haze">
-								Change Password </a>
+								<button type="button" class="btn green-haze" data-ng-click="updatePwd();">Change Password</button>
 								<a href="#" class="btn default">
 								Cancel </a>
 							</div>
@@ -107,10 +112,10 @@
 									</td>
 									<td>
 										<label class="uniform-inline">
-										<input type="radio" name="optionsRadios1" value="option1"/>
+										<input type="radio" name="optionsRadios1" value="yes" data-ng-model="user.st"/>
 										Yes </label>
 										<label class="uniform-inline">
-										<input type="radio" name="optionsRadios1" value="option2" checked/>
+										<input type="radio" name="optionsRadios1" value="no" data-ng-model="user.st"/>
 										No </label>
 									</td>
 								</tr>
@@ -120,25 +125,7 @@
 									</td>
 									<td>
 										<label class="uniform-inline">
-										<input type="checkbox" value=""/> Yes </label>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Enim eiusmod high life accusamus terry richardson ad squid wolf moon
-									</td>
-									<td>
-										<label class="uniform-inline">
-										<input type="checkbox" value=""/> Yes </label>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Enim eiusmod high life accusamus terry richardson ad squid wolf moon
-									</td>
-									<td>
-										<label class="uniform-inline">
-										<input type="checkbox" value=""/> Yes </label>
+										<input type="checkbox" value="1" data-ng-model="user.sta"/> Yes </label>{{user.sta}}
 									</td>
 								</tr>
 							</table>

@@ -11,7 +11,7 @@ MetronicApp.service('UserService', [ '$resource', function($resource) {
 			method : 'PUT',
 			url : Global.ROOT_PATH + '/rest/user/:username/personal'
 		},
-		'changePassword' : {
+		'updatePwd' : {
 			method : 'PUT',
 			url : Global.ROOT_PATH + '/rest/user/:username/password'
 		},
@@ -30,6 +30,10 @@ MetronicApp.service('UserService', [ '$resource', function($resource) {
 			method : 'GET',
 			url : Global.ROOT_PATH + '/rest/user',
 			isArray : true
-		}
+		},
+		'updateImage' : {
+			method : 'PUT',
+			url : Global.ROOT_PATH + '/rest/user/:id/image'
+		},
 	});
 } ]);

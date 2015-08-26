@@ -57,37 +57,33 @@ UserApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
     $urlRouterProvider.otherwise("/signIn.html");  
     
     $stateProvider
-
-
-    .state('signIn', {
-        url: "/signIn.html",
-        templateUrl: "views/user/signIn.html"
-    })
-    
-     .state('forgetPwd', {
-        url: "/forgetPwd.html",
-        templateUrl: "views/user/forgetPwd.html"
-    })
-    
-
-    .state('signUp', {
-        url: "/signUp.html",
-        templateUrl: "views/user/signUp.html",            
-        data: {pageTitle: 'xxxx'},
-        controller: "SignUpController",
-        resolve: {
-            deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                return $ocLazyLoad.load({
-                    name: 'UserApp',
-                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
-                    files: [
-                        
-                    ] 
-                });
-            }]
-        }
-    })
-
+	    .state('signIn', {
+	        url: "/signIn.html",
+	        templateUrl: "views/user/signIn.html"
+	    })
+	    
+	     .state('forgetPwd', {
+	        url: "/forgetPwd.html",
+	        templateUrl: "views/user/forgetPwd.html"
+	    })
+	    
+	    .state('signUp', {
+	        url: "/signUp.html",
+	        templateUrl: "views/user/signUp.html",            
+	        data: {pageTitle: 'xxxx'},
+	        controller: "SignUpController",
+	        resolve: {
+	            deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                return $ocLazyLoad.load({
+	                    name: 'UserApp',
+	                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+	                    files: [
+	                        
+	                    ] 
+	                });
+	            }]
+	        }
+	    })
 
 }]);
 
