@@ -37,3 +37,5 @@ MetronicApp.service('UserService', [ '$resource', function($resource) {
 		},
 	});
 } ]);
+
+

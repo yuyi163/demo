@@ -13,54 +13,10 @@
 			<a href="#/file_upload.html">File Upload</a>
 		</li>
 	</ul>
-	<div class="page-toolbar">
-		<div class="btn-group pull-right">
-			<button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" dropdown-menu-hover data-delay="1000" data-close-others="true">
-			Actions <i class="fa fa-angle-down"></i>
-			</button>
-			<ul class="dropdown-menu pull-right" role="menu">
-				<li>
-					<a href="#">
-					<i class="icon-user"></i> New User </a>
-				</li>
-				<li>
-					<a href="#">
-					<i class="icon-present"></i> New Event <span class="badge badge-success">4</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-					<i class="icon-basket"></i> New order </a>
-				</li>
-				<li class="divider">
-				</li>
-				<li>
-					<a href="#">
-					<i class="icon-flag"></i> Pending Orders <span class="badge badge-danger">4</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-					<i class="icon-users"></i> Pending Users <span class="badge badge-warning">12</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
 </div>
 <!-- END PAGE HEADER-->
 
 <!-- BEGIN MAIN CONTENT -->
-<div class="note note-success">
-	<h3>Angular File Upload</h3>
-	<p>
-		Angular File Upload is a module for the AngularJS framework. Supports drag-n-drop upload, upload progress, validation filters and a file upload queue. It supports native HTML5 uploads, but degrades to a legacy iframe upload method for older browsers. Works with any server side platform which supports standard HTML form uploads.
-	</p>
-	<p><span class="label label-danger">File upload is disabled in the demo only!</span></p>
-	<p>
-		For more info please check the <a href="https://github.com/nervgh/angular-file-upload">official github page</a>
-	</p>
-</div>
 
 <div class="row" ng-controller="FileUploadCtrl" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
 	<div class="col-md-4">
@@ -79,7 +35,7 @@
 								<a class="btn btn-circle btn-icon-only btn-default" href="#">
 								<i class="icon-wrench"></i>
 								</a>
-							</div>
+				</div>
 			</div>
 			<div class="portlet-body">
 				<div ng-show="uploader.isHTML5">
