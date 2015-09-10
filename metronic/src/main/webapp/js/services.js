@@ -38,4 +38,15 @@ MetronicApp.service('UserService', [ '$resource', function($resource) {
 	});
 } ]);
 
+MetronicApp.service('YydataService', [ '$resource', function($resource) {
+	return $resource(Global.ROOT_PATH + '/rest/yydata', null, {
+		'findAll' : {
+			method : 'GET',
+			url : Global.ROOT_PATH + '/rest/yydata',
+			isArray : true
+		},
+	});
+} ]);
+
+
 

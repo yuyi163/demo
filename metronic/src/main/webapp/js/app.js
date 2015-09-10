@@ -385,9 +385,13 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
 
                             'metronic/assets/global/plugins/select2/select2.min.js',
                             'metronic/assets/global/plugins/datatables/all.min.js',
+                            
+                            'js/controllers/YydataController.js',
+                         
                             'js/scripts/table-advanced.js',
 
                             'js/controllers/GeneralPageController.js'
+                            
                         ]
                     });
                 }]

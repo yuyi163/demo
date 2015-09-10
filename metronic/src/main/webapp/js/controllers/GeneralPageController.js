@@ -9,4 +9,5 @@ MetronicApp.controller('GeneralPageController', ['$rootScope', '$scope', 'settin
         $rootScope.settings.layout.pageBodySolid = false;
         $rootScope.settings.layout.pageSidebarClosed = false;
     });
+    
 }]);
