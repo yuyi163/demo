@@ -100,10 +100,7 @@ var TableAdvanced = function () {
             }
 
             console.log('初始化表格开始');
-
-           
             initTable2();
-
             console.log('初始化表格结束');
         }
 
